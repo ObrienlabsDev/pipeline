@@ -2,6 +2,7 @@
 
 # Experimentation
 ## Revisit Helm
+https://cert-manager.io/docs/installation/helm/
 ```
 michaelobrien@mbp7 wse_github % mkdir pipeline
 michaelobrien@mbp7 wse_github % cd pipeline 
@@ -19,5 +20,14 @@ michaelobrien@mbp7 pipeline % helm install cert-manager jetstack/cert-manager \
   --namespace cert-manager \
   --create-namespace \
   --version 1
+
+
+michaelobrien@mbp7 pipeline % helm install \
+  cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --create-namespace \
+  --version v1.16.2 \
+  --set crds.enabled=true \
+  --set prometheus.enabled=false --set webhook.timeoutSeconds=4
 
 ```
