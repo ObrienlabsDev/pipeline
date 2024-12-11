@@ -1,6 +1,8 @@
 # pipeline
+Update 20241211
 
 ## Deployment
+### Install kubectl
 ### Get a Kubernetes Cluster
   I have installed EKS on AWS, we can also use GKE on GCP, docker-desktop, minikube or a CAPI/kubeadm cluster on Raspberry PI 5s
 ```
@@ -8,9 +10,18 @@ kubectl config get-contexts
 CURRENT   NAME                                              CLUSTER                                           AUTHINFO                                          NAMESPACE
       arn:aws:eks:us-east-1:4....0:cluster/prod   arn:aws:eks:us-east-1:4....0:cluster/prod   arn:aws:eks:us-east-1:4....0:cluster/prod   
       docker-desktop                                    docker-desktop                                    docker-desktop                                    
-      minikube                                          minikube                                          minikube                                          default
+      minikube                                          minikube                                          minikube                                          
 ```
-
+#### Install eksctl
+- https://docs.aws.amazon.com/eks/latest/userguide/setting-up.html
+- https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html#eksctl-install-update
+- https://eksctl.io/installation/
+```
+brew tap weaveworks/tap
+brew install weaveworks/tap/eksctl
+(venv-metal) michaelobrien@Michaels-MBP eks % eksctl version  
+0.197.0
+```
 
 ## Architecture
 ### cert-manager
