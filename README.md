@@ -1,5 +1,17 @@
 # pipeline
 
+## Deployment
+### Get a Kubernetes Cluster
+  I have installed EKS on AWS, we can also use GKE on GCP, docker-desktop, minikube or a CAPI/kubeadm cluster on Raspberry PI 5s
+```
+kubectl config get-contexts
+CURRENT   NAME                                              CLUSTER                                           AUTHINFO                                          NAMESPACE
+      arn:aws:eks:us-east-1:4....0:cluster/prod   arn:aws:eks:us-east-1:4....0:cluster/prod   arn:aws:eks:us-east-1:4....0:cluster/prod   
+      docker-desktop                                    docker-desktop                                    docker-desktop                                    
+      minikube                                          minikube                                          minikube                                          default
+```
+
+
 ## Architecture
 ### cert-manager
 Including aws-pravateca-issuer, awspca-cert-pre-install-hook (job), trust-manager, cert-manager-csi-driver on top of the default cert-manager, cert-manager-cainjector, cert-manager-webhook
@@ -7,7 +19,8 @@ Including aws-pravateca-issuer, awspca-cert-pre-install-hook (job), trust-manage
 
 # Experimentation
 ## Revisit Helm
-https://cert-manager.io/docs/installation/helm/
+- https://github.com/ObrienlabsDev/pipeline/issues/2
+- https://cert-manager.io/docs/installation/helm/
 ```
 michaelobrien@mbp7 wse_github % mkdir pipeline
 michaelobrien@mbp7 wse_github % cd pipeline 
@@ -51,5 +64,15 @@ michaelobrien@mbp7 pipeline % helm install \
   --version v1.16.2 \
   --set crds.enabled=true \
   --set prometheus.enabled=false --set webhook.timeoutSeconds=4
+
+```
+
+## Revisit EKS
+- https://github.com/ObrienlabsDev/pipeline/issues/3
+- https://github.com/cert-manager/cert-manager?tab=readme-ov-file
+- https://cert-manager.io/docs/getting-started/
+- https://cert-manager.io/docs/tutorials/getting-started-aws-letsencrypt/
+
+```
 
 ```
