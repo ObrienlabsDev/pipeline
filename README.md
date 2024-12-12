@@ -1,6 +1,10 @@
 # pipeline
 Update 20241211
 
+## Problem
+I need a way to deploy, run and SRE maintain a set of microservices - some of which may require specialized services like use of Apple Metal or NVidia CUDA GPUs.  I can use a CSP like GCP, AWS or Azure and lock into their FaaS or PaaS.  I could run cloud native using kubernetes on the CSP or locally on VMs or bare metal.  I could go old school and run each service on its' own VM/Machine.  I could go pre-kubernetes and run the applications on a large server using just docker or containerd - but miss out on horizontal scaling.  I would like to get the benefits of a full CI/CD pipeline that is AI driven through monitoring and metrics - as close to an automated DevOps / SRE as possible.  In the end I will go mainstream but with an eye to optimized FinOps and deploy to a kubernetes cluster locally.
+## Solution
+
 ## Deployment
 ### Install kubectl
 ### Get a Kubernetes Cluster
