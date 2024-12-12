@@ -5,6 +5,9 @@ metadata:
   name: helloweb
   labels:
     app: hello
+  # reloader
+  #annotations:
+  #  reloader.stakater.com/auto: "true"
 spec:
   selector:
     matchLabels:
@@ -27,6 +30,8 @@ spec:
             mountPath: /etc/tls
             readOnly: true
         env:
+          - name: dummy-env-name
+            value: dummy-env-value
           - name: TLS_CERT
             value: /etc/tls/tls.crt
           - name: TLS_KEY

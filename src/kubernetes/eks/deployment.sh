@@ -147,5 +147,5 @@ if [[ -z $UNIQUE ]]; then
 fi
 
 #deployment "$CREATE_PROJ" "$DELETE_PROJ" "$PROVISION_PROJ" "$BOOT_PROJECT_ID" "$STREAM_PROJECT_ID"
-deployApps
+deployReloader
 printf "**** Done ****\n"
