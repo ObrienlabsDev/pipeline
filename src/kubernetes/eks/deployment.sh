@@ -78,11 +78,15 @@ undeployCertManager() {
 }
 
 deployReloader() {
+  # from https://github.com/stakater/Reloader/blob/master/deployments/kubernetes/reloader.yaml
+  # https://github.com/ObrienlabsDev/pipeline/issues/6
   echo "Deploy reloader"
+  kubectl apply -f reloader.yaml 
 }
 
 undeployReloader() {
   echo "unDeploy reloader"
+  kubectl delete -f reloader.yaml 
 }
 
 deployApps() {
