@@ -2,25 +2,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: helloweb
+  name: helloweb-tls
   labels:
-    app: hello
+    app: helloweb-tls
   # reloader
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: hello
+      app: helloweb-tls
       tier: web
   template:
     metadata:
       labels:
-        app: hello
+        app: helloweb-tls
         tier: web
     spec:
       containers:
-      - name: hello-app
+      - name: helloweb-tls
         image: us-docker.pkg.dev/google-samples/containers/gke/hello-app-tls:1.0
         imagePullPolicy: Always
         ports:
