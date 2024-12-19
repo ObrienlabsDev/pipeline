@@ -1,0 +1,43 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloweb-tls
+  labels:
+    app: helloweb-tls
+  # reloader
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: helloweb-tls
+      tier: web
+  template:
+    metadata:
+      labels:
+        app: helloweb-tls
+        tier: web
+    spec:
+      containers:
+      - name: helloweb-tls
+        image: us-docker.pkg.dev/google-samples/containers/gke/hello-app-tls:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8443
+        volumeMounts:
+          - name: tls
+            mountPath: /etc/tls
+            readOnly: true
+        env:
+          - name: dummy-env-name
+            value: dummy-env-value2
+          - name: TLS_CERT
+            value: /etc/tls/tls.crt
+          - name: TLS_KEY
+            value: /etc/tls/tls.key
+      volumes:
+      - name: tls
+        secret:
+          secretName: www-tls
