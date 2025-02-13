@@ -8,7 +8,14 @@ I need a way to deploy, run and SRE maintain a set of microservices - some of wh
 ## Deployment
 ### Install kubectl
 ### Get a Kubernetes Cluster
-  I have installed EKS on AWS, we can also use GKE on GCP, docker-desktop, minikube or a CAPI/kubeadm cluster on Raspberry PI 5s
+  I have installed EKS on AWS, we can also use GKE on GCP, docker-desktop, minikube, one or more Mac Mini M4s or a CAPI/kubeadm cluster on Raspberry PI 5s
+#### Mac Mini M4 Cluster
+<img width="1418" alt="Screenshot 2025-02-12 at 21 53 04" src="https://github.com/user-attachments/assets/24aec9a7-8e8c-4430-8828-e7464ecd74b4" />
+
+#### Raspberry PI 5 Cluster
+<img width="1419" alt="Screenshot 2025-02-12 at 21 59 58" src="https://github.com/user-attachments/assets/431532f6-ed0f-43d8-a9d4-7e6222dbba24" />
+
+  
 ```
 kubectl config get-contexts
 CURRENT   NAME                                              CLUSTER                                           AUTHINFO                                          NAMESPACE
