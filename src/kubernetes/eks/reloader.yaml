@@ -81,7 +81,7 @@ metadata:
   name: reloader-reloader
   namespace: default
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -93,6 +93,10 @@ spec:
     spec:
       containers:
       - env:
+        - name: RELOAD_ON_DELETE
+          value: "true"
+        #- name: RELOAD_ON_CREATE
+        #  value: "true"
         - name: GOMAXPROCS
           valueFrom:
             resourceFieldRef:

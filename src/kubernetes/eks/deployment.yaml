@@ -7,9 +7,10 @@ metadata:
     app: helloweb-tls
   # reloader
   annotations:
-    reloader.stakater.com/auto: "true"
+    #reloader.stakater.com/auto: "true"
+    secret.reloader.stakater.com/reload: "www-tls"
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: helloweb-tls
@@ -32,11 +33,18 @@ spec:
             readOnly: true
         env:
           - name: dummy-env-name
-            value: dummy-env-value2
+            value: dummy-env-value
           - name: TLS_CERT
             value: /etc/tls/tls.crt
           - name: TLS_KEY
             value: /etc/tls/tls.key
+          - name: TEST_SECRET
+            valueFrom:
+                secretKeyRef:
+                  name: www-tls
+                  # from data section of secret: kubectl get secret www-tls -o yaml
+                  key: ca.crt
+
       volumes:
       - name: tls
         secret:

@@ -1,0 +1,9 @@
+datadog:
+  apiKeyExistingSecret: "datadog-secret"
+  processAgent:
+    enabled: true
+  orchestratorExplorer:
+    enabled: true
+  logs:
+    enabled: true
+    containerCollectAll: true
