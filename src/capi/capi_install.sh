@@ -44,17 +44,21 @@ export SERVICE_DOMAIN="k8s.test"
 export POD_SECURITY_STANDARD_ENABLED="false"
 
 clusterctl generate cluster capi-quickstart --flavor development --kubernetes-version v1.32.0 --control-plane-machine-count=3 --worker-machine-count=3 > capi-quickstart.yaml
+echo "sleep 30sec"
+sleep 30
 kubectl get pods -A
-kubectl apply -f capi-quickstart.yaml
 
 echo "sleep 30sec"
 sleep 30
+kubectl apply -f capi-quickstart.yaml
 kubectl get cluster
 clusterctl describe cluster capi-quickstart
 
 # verify controlplane
 kubectl get kubeadmcontrolplane
 
+echo "sleep 30sec"
+sleep 30
 # get kubeconfig
 kind get kubeconfig --name capi-quickstart > capi-quickstart.kubeconfig
 
