@@ -10,7 +10,7 @@ spec:
     rotationPolicy: Always
   commonName: local.$DOMAIN_NAME
   dnsNames:
-    - local6.$DOMAIN_NAME
+    - local7.$DOMAIN_NAME
   usages:
     - digital signature
     - key encipherment
