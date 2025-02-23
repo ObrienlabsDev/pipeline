@@ -36,6 +36,7 @@ clusterctl version
 
 # initialize the cluster for the docker provider
 export CLUSTER_TOPOLOGY=true
+echo "Initialize the cluster"
 clusterctl init --infrastructure docker
 
 export SERVICE_CIDR=["10.96.0.0/12"]
@@ -44,14 +45,18 @@ export SERVICE_DOMAIN="k8s.test"
 export POD_SECURITY_STANDARD_ENABLED="false"
 
 clusterctl generate cluster capi-quickstart --flavor development --kubernetes-version v1.32.0 --control-plane-machine-count=3 --worker-machine-count=3 > capi-quickstart.yaml
-echo "sleep 30sec"
+echo "sleep 30sec before getting pods (before)"
 sleep 30
 kubectl get pods -A
 
-echo "sleep 30sec"
+echo "sleep 30sec more before applying the capi cluster yaml"
 sleep 30
 kubectl apply -f capi-quickstart.yaml
+echo "sleep 2 min - wait for cluster"
+sleep 120
+echo "kubectl get cluster"
 kubectl get cluster
+echo "cluster describe cluster"
 clusterctl describe cluster capi-quickstart
 
 # verify controlplane
