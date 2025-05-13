@@ -90,6 +90,7 @@ michaelobrien@mbp7 pipeline % helm install \
 ```
 
 ## Install Jenkins via Helm
+20250513
 https://github.com/ObrienlabsDev/pipeline/issues/14
 ```
 mkdir jenkins
@@ -104,7 +105,43 @@ Hang tight while we grab the latest from your chart repositories...
 Update Complete. ⎈Happy Helming!⎈
 helm list
 NAME         	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART         	APP VERSION
-datadog-agent	default  	2       	2024-12-18 16:09:02.076673 -0500 EST	deployed	datadog-3.83.1	7      
+datadog-agent	default  	2       	2024-12-18 16:09:02.076673 -0500 EST	deployed	datadog-3.83.1	7
+% helm search repo jenkins
+NAME           	CHART VERSION	APP VERSION	DESCRIPTION                                       
+jenkins/jenkins	5.8.43       	2.504.1    	Jenkins - Build great things at any scale! As t...
+% helm install jenkins jenkins/jenkins 
+NAME: jenkins
+LAST DEPLOYED: Tue May 13 10:22:00 2025
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+NOTES:
+1. Get your 'admin' user password by running:
+  kubectl exec --namespace default -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/additional/chart-admin-password && echo
+2. Get the Jenkins URL to visit by running these commands in the same shell:
+  echo http://127.0.0.1:8080
+  kubectl --namespace default port-forward svc/jenkins 8080:8080
+
+3. Login with the password from step 1 and the username: admin
+4. Configure security realm and authorization strategy
+5. Use Jenkins Configuration as Code by specifying configScripts in your values.yaml file, see documentation: http://127.0.0.1:8080/configuration-as-code and examples: https://github.com/jenkinsci/configuration-as-code-plugin/tree/master/demos
+
+For more information on running Jenkins on Kubernetes, visit:
+https://cloud.google.com/solutions/jenkins-on-container-engine
+
+For more information about Jenkins Configuration as Code, visit:
+https://jenkins.io/projects/jcasc/
+NOTE: Consider using a custom image with pre-installed plugins     
+
+kubectl get pods | grep jenkins
+jenkins-0                                      0/2     Pending   0          86s
+ kubectl get events
+LAST SEEN   TYPE      REASON             OBJECT                          MESSAGE
+3m33s       Warning   Unhealthy          pod/datadog-agent-5dfv5         Readiness probe failed: HTTP probe failed with statuscode: 500
+3m35s       Warning   Unhealthy          pod/datadog-agent-795sx         Readiness probe failed: HTTP probe failed with statuscode: 500
+95s         Warning   FailedScheduling   pod/jenkins-0                   0/2 nodes are available: pod has unbound immediate PersistentVolumeClaims. preemption: 0/2 nodes are available: 2 Preemption is not helpful for scheduling.
+8s          Normal    FailedBinding      persistentvolumeclaim/jenkins   no persistent volumes available for this claim and no storage class is set
+95s         Normal    SuccessfulCreate   statefulset/jenkins             create Pod jenkins-0 in StatefulSet jenkins successful    
 ```
 
 ## Revisit EKS
