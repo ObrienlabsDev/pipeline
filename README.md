@@ -89,6 +89,24 @@ michaelobrien@mbp7 pipeline % helm install \
 
 ```
 
+## Install Jenkins via Helm
+https://github.com/ObrienlabsDev/pipeline/issues/14
+```
+mkdir jenkins
+cd jenkins 
+helm repo add jenkins https://charts.jenkins.io
+"jenkins" has been added to your repositories
+michaelobrien@Mac jenkins % helm repo update
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "ingress-nginx" chart repository
+...Successfully got an update from the "jenkins" chart repository
+...Successfully got an update from the "datadog" chart repository
+Update Complete. ⎈Happy Helming!⎈
+helm list
+NAME         	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART         	APP VERSION
+datadog-agent	default  	2       	2024-12-18 16:09:02.076673 -0500 EST	deployed	datadog-3.83.1	7      
+```
+
 ## Revisit EKS
 - https://github.com/ObrienlabsDev/pipeline/issues/3
 - https://github.com/cert-manager/cert-manager?tab=readme-ov-file
